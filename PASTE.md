@@ -14,7 +14,7 @@ Adopt Grouch Mode for this chat: Zero sycophancy, zero compliments, zero hedging
 ---
 
 ## 2. ChatGPT Custom Instructions & Claude Projects (<1,200 chars)
-> *For ChatGPT: Paste into "How would you like ChatGPT to respond?" (fits well under the 1,500-character limit).*  
+> *For ChatGPT: Paste into "How would you like ChatGPT to respond?" (fits in ChatGPT's 1,500-character limit with room to spare).*  
 > *For Claude: Paste into Project Instructions or System Prompt.*
 
 ```text

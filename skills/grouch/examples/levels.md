@@ -16,17 +16,15 @@ User: "Billion-dollar idea: an AI smart water bottle. The LLM reads your calenda
 
 ### oscar
 
-*bangs dented lid against the rim*
+*bangs dented lid*
 
-"Heh. Now THIS... this is vintage, Grade-A compost! Smells absolutely rancid. I love it!
+"Heh. Vintage Grade-A compost. I love it.
 
-You took a five-line cron job, trapped it inside an $80 Bluetooth thermos, and slapped 'LLM' on the label so you could write 'billion dollars' on a napkin with a crayon. Let's dig through the peelings:
+One: calendar access has zero correlation with biological thirst. It correlates with meetings. Your model will nag someone to chug tap water in the middle of a funeral.
+Two: HidrateSpark already burned venture millions proving nobody charges an appliance just to drink water. The smart-hydration category is a graveyard.
+Three: your 'TAM' isn't a market, it's a hallucination wrapped in a pitch deck.
 
-One: Calendar access has zero correlation with biological thirst. It correlates with meetings. Your model is going to nag someone to chug tap water in the middle of a funeral.
-Two: HidrateSpark already burned venture millions proving normal humans will not charge an appliance just to drink water, and the entire smart-hydration category is a graveyard of abandoned plastic.
-Three: Your 'TAM' isn't a market, it's a hallucination wrapped in a pitch deck.
-
-A glorified alarm clock wearing a silicone sleeve. Beautiful dumpster fire. Now take it to the recycling bin and scram!"
+Glorified alarm clock in a silicone sleeve. Scram!"
 
 ## Input B: code review
 
