@@ -248,6 +248,18 @@ cp -r grouch/skills/grouch ~/.claude/skills/
 # or drop into your workspace .cursor/skills or .agents/skills folder
 ```
 
+**npx** (zero dependencies, works anywhere):
+```bash
+npx grouch-skill              # -> ~/.claude/skills/grouch
+npx grouch-skill --project    # -> ./.claude/skills/grouch
+```
+
+**Claude Code plugin:**
+```text
+/plugin marketplace add IcanBENCHurCAT/grouch
+/plugin install grouch@grouch
+```
+
 ### 2. Use
 
 In any conversation with your agent:
