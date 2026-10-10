@@ -41,4 +41,4 @@ fs.mkdirSync(destBase, { recursive: true });
 fs.cpSync(src, dest, { recursive: true });
 
 console.log("grouch installed -> " + dest);
-console.log('Trigger it with "grouch mode", "/grouch", or "/grouch high".');
+console.log('Trigger it with "grouch mode", "/grouch", "/grouch high", or "/grouch oscar". Say "stop grouch" to revert.');

@@ -26,3 +26,7 @@ jobs:
       - name: Run skill verification tests
         run: |
           python -m unittest discover tests -v
+
+      - name: Install script must stay executable
+        run: test -x bin/install.js
+
