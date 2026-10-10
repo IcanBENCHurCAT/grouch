@@ -91,6 +91,7 @@ Zero dependencies, zero build steps.
 ```bash
 npx grouch-skill              # -> ~/.claude/skills/grouch
 npx grouch-skill --project    # -> ./.claude/skills/grouch
+npx grouch-skill --uninstall  # remove it again
 ```
 
 **Claude Code plugin:**
