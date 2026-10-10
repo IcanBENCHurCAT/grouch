@@ -1,5 +1,9 @@
+import json
 import os
 import re
+import shutil
+import subprocess
+import tempfile
 import unittest
 from pathlib import Path
 
@@ -84,6 +88,75 @@ class TestGrouchSkill(unittest.TestCase):
             500,
             f"1-Turn Opener snippet ({len(opener)} chars) exceeds 500 chars limit"
         )
+
+class TestInstallerCriticalPath(unittest.TestCase):
+    """Exercises the actual installer. The previous suite only checked that
+    files exist, which is how two broken releases shipped: 0.1.0 with a
+    non-executable installer, and 0.1.1 with the bin entry stripped by npm
+    because the package.json bin value started with "./"."""
+
+    def setUp(self):
+        with open(ROOT_DIR / "package.json", encoding="utf-8") as fh:
+            self.pkg = json.load(fh)
+        self.bin_name = "grouch-skill"
+        self.bin_target = self.pkg["bin"][self.bin_name]
+        self.install_js = ROOT_DIR / "bin" / "install.js"
+
+    def test_bin_value_has_no_dot_slash_prefix(self):
+        # npm publish strips bin entries whose target starts with "./",
+        # silently shipping a package npx cannot execute.
+        self.assertFalse(
+            self.bin_target.startswith("./"),
+            f'bin["{self.bin_name}"] must not start with "./" '
+            f"(npm strips it on publish): {self.bin_target!r}",
+        )
+
+    def test_bin_target_exists_on_disk(self):
+        target = ROOT_DIR / self.bin_target
+        self.assertTrue(
+            target.is_file(),
+            f"bin target {self.bin_target!r} does not exist under repo root",
+        )
+
+    def test_install_js_has_node_shebang(self):
+        with open(self.install_js, encoding="utf-8") as fh:
+            first_line = fh.readline().rstrip("\n")
+        self.assertEqual(
+            first_line,
+            "#!/usr/bin/env node",
+            "bin/install.js must start with a node shebang",
+        )
+
+    def test_install_js_is_executable(self):
+        # 0.1.0 shipped with the installer non-executable; npx failed.
+        self.assertTrue(
+            os.access(self.install_js, os.X_OK),
+            "bin/install.js must be executable (chmod +x)",
+        )
+
+    @unittest.skipUnless(shutil.which("node"), "node is not installed")
+    def test_installer_runs_and_installs_skill(self):
+        with tempfile.TemporaryDirectory() as tmpdir:
+            result = subprocess.run(
+                ["node", str(self.install_js), "--dir", tmpdir],
+                capture_output=True,
+                text=True,
+                timeout=60,
+            )
+            self.assertEqual(
+                result.returncode,
+                0,
+                f"install.js exited {result.returncode}: {result.stderr}",
+            )
+            self.assertTrue(
+                (Path(tmpdir) / "grouch" / "SKILL.md").is_file(),
+                "installer did not produce <dir>/grouch/SKILL.md",
+            )
+            self.assertTrue(
+                (Path(tmpdir) / "grouch" / "examples" / "levels.md").is_file(),
+                "installer did not produce <dir>/grouch/examples/levels.md",
+            )
+
 
 if __name__ == "__main__":
     unittest.main()
