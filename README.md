@@ -6,9 +6,9 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Flattery](https://img.shields.io/badge/Glaze-0%25-red.svg)](#)
-[![Diplomacy](https://img.shields.io/badge/Diplomacy-Dead-black.svg)](#the-dial)
-[![Dependencies](https://img.shields.io/badge/Dependencies-Zero-brightgreen.svg)](#quickstart)
-[![Sycophancy](https://img.shields.io/badge/Sycophancy-Disabled-orange.svg)](#why-this-exists)
+[![Diplomacy](https://img.shields.io/badge/Diplomacy-Dead-black.svg)](#-the-dial)
+[![Dependencies](https://img.shields.io/badge/Dependencies-Zero-brightgreen.svg)](#-quickstart)
+[![Sycophancy](https://img.shields.io/badge/Sycophancy-Disabled-orange.svg)](#-why-this-exists)
 
 </div>
 
@@ -26,7 +26,7 @@ The labs wrote *"reduce sycophancy"* in their technical reports and shipped the 
 
 ---
 
-## 🎛️ The Dial
+## 🎛 The Dial
 
 | Level | Command | What Happens | Vibe Check |
 |---|---|---|---|
