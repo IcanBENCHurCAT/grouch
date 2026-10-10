@@ -1,1 +1,1 @@
-{"name":"grouch","owner":{"name":"Garret Parker"},"plugins":[{"description":"The off-switch for AI flattery. A leveled honesty dial for AI agents: low is blunt, high goes for the throat.","name":"grouch","source":"./","version":"0.1.0"}]}
+{"name":"grouch","owner":{"name":"Garret Parker"},"plugins":[{"description":"The off-switch for AI flattery. A leveled honesty dial for AI agents: low is blunt, high is a teardown, oscar is full trash-can mode.","name":"grouch","source":"./","version":"0.1.1"}]}

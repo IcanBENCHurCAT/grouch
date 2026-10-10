@@ -6,9 +6,9 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Flattery](https://img.shields.io/badge/Glaze-0%25-red.svg)](#)
-[![Diplomacy](https://img.shields.io/badge/Diplomacy-Dead-black.svg)](#the-dial)
-[![Dependencies](https://img.shields.io/badge/Dependencies-Zero-brightgreen.svg)](#install)
-[![Sycophancy](https://img.shields.io/badge/Sycophancy-Disabled-orange.svg)](#why-this-exists)
+[![Diplomacy](https://img.shields.io/badge/Diplomacy-Dead-black.svg)](#-the-dial)
+[![Dependencies](https://img.shields.io/badge/Dependencies-Zero-brightgreen.svg)](#-quickstart)
+[![Sycophancy](https://img.shields.io/badge/Sycophancy-Disabled-orange.svg)](#-why-this-exists)
 
 </div>
 
@@ -26,7 +26,7 @@ The labs wrote *"reduce sycophancy"* in their technical reports and shipped the 
 
 ---
 
-## 🎛️ The Dial
+## 🎛 The Dial
 
 | Level | Command | What Happens | Vibe Check |
 |---|---|---|---|
@@ -85,17 +85,28 @@ useEffect(() => { updateForm({ country: selectedCountry, region: selectedRegion,
 
 ## ⚡ Quickstart
 
-Zero dependencies, zero build steps. Copy `skills/grouch/` into your agent's skills directory:
+Zero dependencies, zero build steps.
 
+**npx** (fastest):
+```bash
+npx grouch-skill              # -> ~/.claude/skills/grouch
+npx grouch-skill --project    # -> ./.claude/skills/grouch
+```
+
+**Claude Code plugin:**
+```text
+/plugin marketplace add IcanBENCHurCAT/grouch
+/plugin install grouch@grouch
+```
+
+**Manual:** clone and copy `skills/grouch/` into your agent's skills directory:
 ```bash
 git clone https://github.com/IcanBENCHurCAT/grouch.git
-
-# Claude Code / Cursor / OpenClaw:
-cp -r grouch/skills/grouch ~/.claude/skills/
-
-# Google Antigravity / Agentic Environments:
-cp -r grouch/skills/grouch ~/.gemini/skills/
+cp -r grouch/skills/grouch ~/.claude/skills/       # Claude Code / Cursor / OpenClaw
+cp -r grouch/skills/grouch ~/.gemini/skills/       # Antigravity / Agentic Environments
 ```
+
+No agent framework? Grab **[PASTE.md](PASTE.md)** for copy-paste snippets (ChatGPT, Claude web, Cursor rules, Copilot).
 
 Then in any conversation:
 
