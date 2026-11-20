@@ -10,10 +10,12 @@ const fs = require("fs");
 const os = require("os");
 const path = require("path");
 
-function usage() {
-  console.log("Usage: npx grouch-skill [--project] [--dir <path>]");
-  console.log("       npx grouch-skill --uninstall [--project] [--dir <path>]");
-  process.exit(1);
+function usage(exitCode) {
+  const print = exitCode === 0 ? console.log : console.error;
+  print("Usage: npx grouch-skill [--project] [--dir <path>]");
+  print("       npx grouch-skill --uninstall [--project] [--dir <path>]");
+  print("       npx grouch-skill --help");
+  process.exit(exitCode);
 }
 
 const args = process.argv.slice(2);
@@ -26,10 +28,12 @@ for (let i = 0; i < args.length; i++) {
     destBase = path.join(process.cwd(), ".claude", "skills");
   } else if (args[i] === "--dir") {
     const p = args[++i];
-    if (!p) usage();
+    if (!p || p.startsWith("-")) usage(1);
     destBase = p;
+  } else if (args[i] === "--help" || args[i] === "-h") {
+    usage(0);
   } else {
-    usage();
+    usage(1);
   }
 }
 if (!destBase) destBase = path.join(os.homedir(), ".claude", "skills");
