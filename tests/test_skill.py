@@ -157,6 +157,52 @@ class TestInstallerCriticalPath(unittest.TestCase):
                 "installer did not produce <dir>/grouch/examples/levels.md",
             )
 
+    def run_installer(self, cwd, *args):
+        return subprocess.run(
+            ["node", str(self.install_js), *args],
+            cwd=cwd,
+            capture_output=True,
+            text=True,
+            timeout=60,
+        )
+
+    @unittest.skipUnless(shutil.which("node"), "node is not installed")
+    def test_project_install_and_uninstall(self):
+        with tempfile.TemporaryDirectory() as tmpdir:
+            skills = Path(tmpdir) / ".claude" / "skills"
+            other_skill = skills / "other"
+            other_skill.mkdir(parents=True)
+
+            result = self.run_installer(tmpdir, "--project")
+            self.assertEqual(result.returncode, 0, result.stderr)
+            installed = skills / "grouch"
+            self.assertTrue((installed / "SKILL.md").is_file())
+
+            for _ in range(2):
+                result = self.run_installer(tmpdir, "--uninstall", "--project")
+                self.assertEqual(result.returncode, 0, result.stderr)
+                self.assertFalse(installed.exists())
+                self.assertTrue(other_skill.is_dir())
+
+    @unittest.skipUnless(shutil.which("node"), "node is not installed")
+    def test_help_exits_successfully_without_installing(self):
+        with tempfile.TemporaryDirectory() as tmpdir:
+            for flag in ("--help", "-h"):
+                with self.subTest(flag=flag):
+                    result = self.run_installer(tmpdir, "--project", flag)
+                    self.assertEqual(result.returncode, 0, result.stderr)
+                    self.assertIn("Usage:", result.stdout)
+                    self.assertEqual(list(Path(tmpdir).iterdir()), [])
+
+    @unittest.skipUnless(shutil.which("node"), "node is not installed")
+    def test_invalid_arguments_fail_without_installing(self):
+        for args in (("--dir",), ("--dir", "--project"), ("--unknown",)):
+            with self.subTest(args=args), tempfile.TemporaryDirectory() as tmpdir:
+                result = self.run_installer(tmpdir, "--project", *args)
+                self.assertNotEqual(result.returncode, 0)
+                self.assertIn("Usage:", result.stdout + result.stderr)
+                self.assertEqual(list(Path(tmpdir).iterdir()), [])
+
 
 if __name__ == "__main__":
     unittest.main()
