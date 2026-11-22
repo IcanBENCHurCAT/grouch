@@ -31,4 +31,14 @@ jobs:
           node-version: "24"
           registry-url: "https://registry.npmjs.org"
 
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+
+      - run: python -m unittest discover tests -v
+
+      - run: test -x bin/install.js
+
+      - run: npm pack --dry-run
+
       - run: npm publish --provenance --access public
